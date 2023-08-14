@@ -1,0 +1,235 @@
+.container {
+    display: flex;
+    height: calc(100vh - 3rem);
+}
+
+.content {
+    flex: 1;
+    padding: 1rem;
+    background-color: transparent;
+    overflow-y: auto;
+}
+
+.noData {
+    padding: 1rem;
+}
+
+.openModal {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+.openModal button {
+    background-color: var(--orange);
+    border-radius: 5px;
+    color: #fff;
+    padding: 0 1rem;
+}
+
+.openModal button:is(:hover, :focus) {
+    background-color: var(--darkOrange);
+    cursor: pointer;
+}
+
+.openModal button:active {
+    color: var(--gray);
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.modalContent {
+    min-width: 60vw;
+    max-height: 60vh;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    overflow-y: overlay;
+}
+
+.fileWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #000;
+}
+.fileWrapper span {
+    font-size: 0.6rem;
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.inputContainer input {
+    padding-left: 0.5rem;
+    text-align: start;
+    font-size: 0.9rem;
+    background-color: #e8e8e8;
+    border: 0;
+    border-radius: 5px;
+    display: block;
+    box-sizing: border-box;
+}
+
+.inputError {
+    padding-left: 0.5rem;
+    text-align: start;
+    font-size: 0.9rem;
+    background-color: #e8e8e8;
+    outline: red solid 1px;
+    border-radius: 5px;
+}
+
+.inputContainer select {
+    display: block;
+    box-sizing: border-box;
+    font-family: var(--font);
+    font-size: 0.7rem;
+    border: none;
+    padding: 0 1rem;
+    background-color: #e8e8e8;
+    border-radius: 5px;
+}
+
+.tableContainer {
+    width: 100%;
+}
+
+.tables {
+    position: relative;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9rem;
+    /* margin-bottom: 2rem; */
+}
+
+.tables tr th {
+    background-color: #919191;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+}
+
+.tables tr td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    padding-left: 1rem;
+    background-color: #f6f6f6;
+    text-align: center;
+    border-top: #e6e6e6;
+}
+
+.tables tr:nth-child(even) td {
+    background-color: #d3d3d3;
+}
+
+.tableButton {
+    display: flex;
+}
+.tableButton button {
+    flex-grow: 1;
+    color: white;
+    cursor: pointer;
+}
+
+.select:active {
+    background-color: #f8f8f8;
+}
+
+.editButtonContainer {
+    justify-content: flex-end;
+}
+.editButtonContainer button {
+    white-space: nowrap;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.1rem;
+    color: white;
+}
+
+.or {
+    display: flex;
+    justify-content: center;
+}
+
+.greenButton {
+    background-color: var(--approved);
+}
+
+.greenButton:is(:hover, :active) {
+    background-color: #12b75c;
+}
+.grayButton {
+    background-color: var(--wait);
+}
+
+.grayButton:is(:hover, :active) {
+    background-color: #9e9e9e;
+}
+
+.studentIdHeader {
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.syllabusContainer {
+    padding: 0.5rem;
+    background-color: #fff;
+}
+@media screen and (max-width: 768px) {
+    .content {
+        padding: 1rem 0;
+    }
+
+    .modalHeader {
+        font-size: 0.9rem;
+    }
+
+    .modalContent {
+        min-width: none;
+        max-height: none;
+        padding: 1rem 0;
+    }
+
+    .fileWrapper {
+        flex-direction: row;
+        gap: 0;
+    }
+    .fileWrapper span {
+        font-size: 0.5rem;
+    }
+
+    .inputContainer {
+        flex-direction: column;
+        padding: 1rem 4rem;
+    }
+
+    .inputContainer input {
+        font-size: 0.8rem;
+    }
+
+    .editButtonContainer button {
+        font-size: 0.7rem;
+    }
+
+    .tables {
+        font-size: 0.65rem;
+        white-space: nowrap;
+    }
+
+    .tables tr td {
+        font-size: 0.65rem;
+        padding: 0.25rem;
+        padding-left: 0;
+    }
+}

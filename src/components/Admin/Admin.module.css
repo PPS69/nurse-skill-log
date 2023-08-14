@@ -1,0 +1,313 @@
+.container {
+    display: flex;
+    height: calc(100vh - 3rem);
+}
+
+.content {
+    flex: 1;
+    padding: 1rem;
+    background-color: transparent;
+    overflow-y: auto;
+}
+
+.blockContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.confirmBlock {
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.block {
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.block:hover,
+.addBlock:hover {
+    cursor: pointer;
+    background-color: var(--darkGray);
+    transition: all 0.3s;
+}
+
+.blockActive {
+    position: relative;
+    padding: 1rem;
+    background-color: var(--darkGray);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+.blockActive input {
+    display: block;
+    box-sizing: border-box;
+    text-align: start;
+    padding-left: 1rem;
+    font-size: 1rem;
+    width: 100%;
+    background-color: #e8e8e8;
+    border: 0;
+    border-radius: 5px;
+}
+
+.boxContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+.buttonContainer {
+    display: flex;
+    padding-top: 1rem;
+}
+.buttonContainer button {
+    flex-grow: 1;
+    margin: 0.5rem;
+    padding: 0.25rem;
+    cursor: pointer;
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.25);
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.greenButton {
+    background-color: var(--approved);
+}
+
+.redButton {
+    background-color: var(--reject);
+    cursor: pointer;
+}
+.grayButton {
+    background-color: var(--wait);
+}
+
+.greenButton:is(:hover, :active) {
+    background-color: #12b75c;
+}
+
+.redButton:is(:hover, :active) {
+    background-color: #d74040;
+}
+
+.grayButton:is(:hover, :active) {
+    background-color: hwb(0 100% 50%);
+}
+
+.tableContainer {
+    position: relative;
+}
+
+.tables {
+    table-layout: fixed;
+    position: relative;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tables tr th {
+    background-color: #919191;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+.tables tr td {
+    padding: 0.5rem;
+    background-color: #f6f6f6;
+    text-align: center;
+}
+
+.tables tr:nth-child(even) td {
+    background-color: #d3d3d3;
+}
+
+.select {
+    font-family: var(--font);
+    font-size: 0.9rem;
+    border: none;
+    padding: 0 1rem;
+    background-color: #e8e8e8;
+    border-radius: 5px;
+}
+.select:active {
+    background-color: #f8f8f8;
+}
+
+.editButtonContainer {
+    display: grid;
+    padding: 0 0.25rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.editButtonContainer button {
+    cursor: pointer;
+    white-space: nowrap;
+    color: #fff;
+    transition: all 0.3s;
+    border-radius: 50%;
+}
+
+.editButton {
+    font-size: 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.1rem;
+    background-color: var(--orange);
+    color: white;
+}
+
+.editButton:hover {
+    background-color: var(--darkOrange);
+}
+
+.tableInput {
+    text-align: center;
+    font-size: 0.9rem;
+    background-color: #e8e8e8;
+    border: 0;
+    border-radius: 5px;
+}
+
+.modalCloseBt {
+    position: absolute;
+    cursor: pointer;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-weight: 800;
+}
+
+.modalContent {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 2rem 0 2rem;
+    gap: 1rem;
+}
+
+.modalInput {
+    text-align: start;
+    padding-left: 0.5rem;
+    background-color: #e8e8e8;
+    border: 0;
+    border-radius: 5px;
+}
+
+.modalFooter {
+    display: flex;
+    padding: 1rem 0;
+}
+
+.modalFooter button {
+    color: #fff;
+    flex-grow: 1;
+    margin: 0.5rem;
+    padding: 0.25rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.deleteButton {
+    display: flex;
+    justify-content: flex-end;
+}
+.deleteButton button {
+    margin: 0.5rem;
+    padding: 0 0.5rem;
+    border-radius: 5px;
+    white-space: nowrap;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.disabled {
+    background-color: var(--wait);
+    cursor: not-allowed;
+}
+
+@media screen and (max-width: 768px) {
+    .blockContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .blockActive {
+        padding: 1rem 0.5rem;
+    }
+
+    .blockActive input {
+        text-align: start;
+        padding-left: 0.25rem;
+        font-size: 0.7rem;
+    }
+
+    .boxContainer {
+        grid-template-columns: 1fr;
+        padding: 0.25rem;
+        gap: 2rem;
+        font-size: 0.7rem;
+    }
+
+    .tableContainer {
+        overflow: visible;
+    }
+
+    .tables thead {
+        display: none;
+    }
+
+    .tables tr {
+        margin-bottom: 1.5rem;
+        display: block;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .tables tr td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        text-align: right;
+        font-size: max(0.7rem, 2.5vw);
+    }
+
+    .tables tr td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .tables tr:nth-child(even) td {
+        background-color: #f6f6f6;
+    }
+
+    .tableInput {
+        display: block;
+        box-sizing: border-box;
+        text-align: start;
+        width: 100%;
+        padding-left: 0.5rem;
+        font-size: max(0.7rem, 2.5vw);
+    }
+
+    .select {
+        font-size: max(0.7rem, 2.5vw);
+    }
+
+    .editButtonContainer button {
+        border-radius: 0;
+    }
+}

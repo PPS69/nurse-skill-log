@@ -1,0 +1,191 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Student {
+    studentId String @id
+    name      String
+    email     String @unique
+
+    // Relation Fields
+    writeExperience WriteExperience[]
+    syllabus        Syllabus          @relation(fields: [syllabusId], references: [id], onDelete: SetDefault)
+    syllabusId      Int               @default(1)
+    user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId          String            @unique
+    completed       Completed?
+
+    @@index([email])
+}
+
+model Syllabus {
+    id   Int    @id @default(autoincrement())
+    name String @unique
+
+    // Relation Fields
+    experiences Experience[]
+    Student     Student[]
+    // writeExperience WriteExperience[]
+}
+
+model Experience {
+    id        Int     @id @default(autoincrement())
+    name      String
+    completed Boolean @default(false)
+
+    // Relation Fields
+    writeExperience WriteExperience[]
+    subTopic        SubTopic[]
+    syllabus        Syllabus[]
+    complete        Completed[]
+}
+
+model SubTopic {
+    id                  Int     @id @default(autoincrement())
+    name                String?
+    practicePrinciples  Int
+    throughoutTheCourse Int
+    completed           Boolean @default(false)
+
+    // Relation Fields
+    writeExperience WriteExperience[]
+    complete        Completed[]
+    experience      Experience        @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+    experienceId    Int
+
+    @@index([experienceId])
+}
+
+model Completed {
+    id Int @id @default(autoincrement())
+
+    // Relation Fields
+    student    Student      @relation(fields: [studentId], references: [studentId], onDelete: Cascade)
+    studentId  String       @unique
+    experience Experience[]
+    subTopic   SubTopic[]
+}
+
+model WriteExperience {
+    id         String   @id @default(cuid())
+    date       DateTime
+    hospital   String
+    ward       String?
+    patientBed String?
+    createdAt  DateTime @default(now())
+    updateAt   DateTime @updatedAt
+    status     Status   @default(new)
+    comment    String?
+
+    // Relation Fields
+    approverId   String
+    approver     Approver   @relation(fields: [approverId], references: [id], onDelete: Cascade)
+    studentId    String
+    student      Student    @relation(fields: [studentId], references: [studentId], onDelete: Cascade)
+    experienceId Int
+    experience   Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+    subTopicId   Int
+    subTopic     SubTopic   @relation(fields: [subTopicId], references: [id], onDelete: Cascade)
+
+    @@index([approverId, studentId])
+}
+
+model Approver {
+    id    String @id @default(cuid())
+    name  String
+    email String @unique
+
+    // Relation Fields
+    writeExperience WriteExperience[]
+    user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId          String            @unique
+
+    @@index([email])
+}
+
+model Hospital {
+    id      String @id @default(cuid())
+    name    String
+}
+
+enum Role {
+    wait
+    student
+    approver
+    admin
+    null
+}
+
+enum Status {
+    new
+    wait
+    approved
+    rejected
+}
+
+// NEXT AUTH
+
+model Account {
+    id                String  @id @default(cuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String? @db.Text
+    session_state     String?
+    studentId         String?
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+    @@index([userId])
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
+}
+
+model User {
+    id            String    @id @default(cuid())
+    name          String
+    email         String    @unique
+    emailVerified DateTime?
+    image         String?
+    password      String?
+    role          Role      @default(null)
+    accounts      Account[]
+    sessions      Session[]
+    Student       Student?
+    approver      Approver?
+    createdAt     DateTime  @default(now())
+    updateAt      DateTime  @updatedAt
+
+    @@index([email])
+}
+
+model VerificationToken {
+    identifier String
+    token      String   @unique
+    expires    DateTime
+
+    @@unique([identifier, token])
+}

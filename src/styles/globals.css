@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --font: 'Kanit';
+    --orange: #f86e2d;
+    --darkOrange: #e7662a;
+    --gray: #e8e8e8;
+    --darkGray: #c1c1c1;
+    --approved: #13ce66;
+    --wait: #808080;
+    --reject: #ff4949;
+}
+
+html,
+body {
+    background: #c0c0c0;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font);
+    min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #9f9f9f;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b1b1b1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+fieldset,
+input,
+legend,
+textarea {
+    font-family: var(--font);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='password'],
+select,
+textarea {
+    font-size: 16px;
+}
+
+.sidebar-toggle {
+    display: inline-block;
+    position: fixed;
+    cursor: pointer;
+    left: 1rem;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+}
+.sidebar-toggle:hover {
+    background-color: var(--darkOrange);
+}
+.sidebar-toggle:active {
+    background-color: #d65f27;
+}
+
+nav.desktop {
+    padding: 0 4rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: black;
+    height: 3rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    background-color: var(--orange);
+    white-space: nowrap;
+}
+
+nav.desktop .logo {
+    margin-right: auto;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+nav.desktop li,
+nav.desktop button {
+    display: inline-block;
+    list-style: none;
+    padding: 0 1rem;
+    font-size: 1rem;
+    letter-spacing: 0.235px;
+    user-select: none;
+}
+
+nav.desktop li.active,
+nav.desktop li:hover,
+nav.desktop button:hover {
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 0;
+}
+
+nav.desktop span {
+    font-size: 1rem;
+    padding: 0 1rem;
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 3rem);
+}
+
+.content {
+    flex: 1;
+    background-color: transparent;
+    overflow-y: auto;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: #000000e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+    z-index: 999;
+}
+
+.modal {
+    /* width: clamp(60%, 500px, 90%);
+    height: min(70%, 300px); */
+    /* padding: 10rem 2rem; */
+    /* position: absolute;
+    top: 15%;
+    left: 20%;
+    right: 20%; */
+    position: relative;
+    box-shadow: 8px 16px 16px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    background-color: var(--darkGray);
+}
+
+.pageNotFound {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.pageNotFound h1 {
+    font-size: max(1.5rem, 4vw);
+}
+.pageNotFound p {
+    font-size: max(1rem, 2vw);
+}
+
+.border {
+    padding: 2rem;
+    border: solid 0.5rem;
+    border-image-source: linear-gradient(
+        to bottom right,
+        var(--orange),
+        #e48729
+    );
+    border-image-slice: 4;
+}
+
+.b2h {
+    color: #4979ff;
+}
+
+.b2h:hover {
+    font-weight: 600;
+    text-decoration: underline;
+    transition: all 0.1s;
+}
+
+nav.mobile {
+    display: none;
+}
+
+.required:after {
+    content: ' *';
+    color: red;
+}
+
+.react-select-container {
+    font-family: var(--font);
+    width: min(50%, 14rem);
+    padding: 0.01rem 0;
+    text-align: center;
+    color: black;
+}
+
+.checkbox {
+    font-family: var(--font);
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+    appearance: auto;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1000px) {
+    nav.desktop {
+        display: none;
+    }
+
+    nav.mobile {
+        user-select: none;
+        background-color: var(--orange);
+        padding: 1rem 0 0.45rem 1rem;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    }
+    nav.mobile .logo {
+        display: flex;
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .logo > button {
+        margin-right: 1rem;
+    }
+    nav.mobile li,
+    nav.mobile button {
+        font-size: max(0.7rem, 2.5vw);
+        display: inline-block;
+        list-style: none;
+        padding: 0 1rem;
+        letter-spacing: 0.235px;
+    }
+
+    nav.mobile button:is(:hover, :active) {
+        cursor: pointer;
+        background-color: #0000001f;
+    }
+
+    nav.mobile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navigate {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .navigate li {
+        position: relative;
+        font-size: max(0.8rem, 2vw);
+    }
+
+    .underline {
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        background: black;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .modal {
+        border-radius: 12px 12px 0px 0px;
+        position: absolute;
+        top: 40%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: overlay;
+        padding-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .pageNotFound {
+        padding-top: 0;
+        flex-direction: column;
+    }
+}
